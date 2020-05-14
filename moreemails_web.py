@@ -7,11 +7,12 @@ email = EmailMessage()
 email['from'] = 'Kristen Gillen'
 email['to'] = 'kristen.k.gillen@gmail.com'
 email['subject'] = 'I sent this from a python file!'
-
+#read in body of html and substitute the name
 html = Template(Path('index.html').read_text())
 
 email.set_content(html.substitute({'name': 'TinTin'}), 'html') #can have multiple library entries from html file here
 
+#now let's send the message
 with smtplib.SMTP(host='smtp.gmail.com', port=587) as smtp:
   smtp.ehlo()
   smtp.starttls()
